@@ -261,15 +261,15 @@ body.night{background:#1C0F17;}
 body.night .panel{background:var(--cell-bg);border-color:#4A3566;}
 
 /* ===== HERO: kiri = sisa slot, tengah = podium (lebar), kanan = waktu ===== */
-.hero{position:relative;margin:0 0 6px;padding:3px 12px 0;border-radius:10px;background:#FF7FB8;overflow:hidden;border:2px solid #fff;box-shadow:0 8px 22px rgba(214,51,132,.35);
+.hero{position:relative;margin:0 0 3px;padding:3px 12px 0;border-radius:10px;background:#FF7FB8;overflow:hidden;border:2px solid #fff;box-shadow:0 8px 22px rgba(214,51,132,.35);
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,840px) minmax(0,1fr);gap:10px;align-items:end;}
 body.night .hero{background:#9C2A64;border-color:#3A1A2B;box-shadow:0 8px 22px rgba(0,0,0,.6);}
-.hero-side{align-self:center;display:flex;justify-content:center;padding-bottom:6px;min-width:0;}
-.hero-card{width:100%;max-width:280px;text-align:center;color:#fff;background:#9C6BF0;border:2px solid #7E57C2;border-radius:12px;padding:4px 10px 6px;box-shadow:0 4px 12px rgba(80,0,60,.45);text-shadow:none;}
-.hero-label{font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2;}
-.hero-big{font-weight:800;font-size:24px;line-height:1.05;color:#FFFFFF;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.hero-side{align-self:end;display:flex;justify-content:center;padding-bottom:2px;min-width:0;}
+.hero-card{width:100%;max-width:280px;text-align:center;color:#fff;background:#9C6BF0;border:2px solid #7E57C2;border-radius:10px;padding:2px 8px 3px;box-shadow:0 4px 12px rgba(80,0,60,.45);text-shadow:none;}
+.hero-label{font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2;}
+.hero-big{font-weight:800;font-size:26px;line-height:1.05;color:#FFFFFF;font-variant-numeric:tabular-nums;white-space:nowrap;}
 .hero-big small{font-size:.42em;color:#fff;font-weight:700;}
-.timer-big{font-size:50px;letter-spacing:1px;}
+.timer-big{font-size:32px;letter-spacing:1px;}
 .timer-big.warn{color:#FFD1EC;}
 .hero-label{color:#fff;}
 #slotLeft{color:#fff;text-shadow:0 2px 0 #5E35B1;}
@@ -283,14 +283,14 @@ body.night .hero{background:#9C2A64;border-color:#3A1A2B;box-shadow:0 8px 22px r
 .timer-banner.pre{border-color:#fff;color:#fff;font-size:120px;padding:6px 44px;}
 .timer-banner.go{border-color:#fff;color:#fff;font-size:72px;}
 .timer-banner.end{border-color:#fff;color:#fff;font-size:64px;}
-.timer-ctl{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:2px;text-shadow:none;}
-.timer-ctl input{width:3.4em;border:1px solid rgba(255,255,255,.8);border-radius:5px;background:#fff;color:#000;font-family:inherit;font-weight:700;font-size:13px;text-align:center;padding:2px 3px;}
+.timer-ctl{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:1px;text-shadow:none;}
+.timer-ctl input{width:3em;border:1px solid rgba(255,255,255,.8);border-radius:5px;background:#fff;color:#000;font-family:inherit;font-weight:700;font-size:11px;text-align:center;padding:1px 2px;}
 .timer-unit{font-size:11px;font-weight:600;color:#fff;text-shadow:none;}
-.timer-ctl button{border:1px solid #fff;border-radius:5px;background:#fff;color:#C2185B;font-family:inherit;font-weight:800;font-size:14px;line-height:1;padding:3px 10px;cursor:pointer;}
+.timer-ctl button{border:1px solid #fff;border-radius:5px;background:#fff;color:#C2185B;font-family:inherit;font-weight:800;font-size:11px;line-height:1;padding:2px 8px;cursor:pointer;}
 .timer-ctl button:active{transform:scale(.92);}
 .hero-big.timer-done{color:#fff;animation:timerBlink .6s steps(2) infinite;}
 @keyframes timerBlink{50%{opacity:.25;}}
-.hero-sub{font-weight:600;font-size:10px;line-height:1.25;}
+.hero-sub{font-weight:600;font-size:9px;line-height:1.25;}
 .podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-items:end;width:100%;margin:0 auto;}
 .pod{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;}
 .pod-medal{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#222;border:3px solid #fff;box-shadow:0 3px 7px rgba(0,0,0,.25);}
@@ -325,6 +325,17 @@ td.poin-cell{padding:1px;}
 tbody td{border-width:1.5px;}
 th.colhead{border-width:1.5px;}
 .panel .copyright{font-size:calc(var(--fs)*1.1);margin-top:3px;padding-top:0;}
+
+/* hero + tabel menyatu: tanpa celah / sudut hitam di antaranya */
+.wrap .hero{margin-bottom:0;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:none;}
+.wrap .panel{margin-top:0;border-top:0;border-radius:0 0 14px 14px;}
+.wrap .panel{padding:0 0 3px;}
+.wrap .top-row{margin:0;gap:0;}
+.wrap .tables{gap:6px;}
+.wrap .hero-side{align-self:center;justify-content:center;align-items:center;padding:6px 0;}
+.wrap .hero-card{width:100%;max-width:250px;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:2px 8px;}
+.wrap .hero-card .hero-big{text-align:center;}
+.wrap .timer-ctl{margin-top:2px;}
 </style>
 </head>
 <body>
@@ -539,7 +550,7 @@ th.colhead{border-width:1.5px;}
     const left = TOTAL_PESERTA - filled;
     slotLeftEl.textContent = left;
     slotTotalEl.textContent = '/ ' + TOTAL_PESERTA;
-    slotSubEl.textContent = left === 0 ? 'semua slot terisi' : (filled + ' terisi, ' + left + ' masih kosong');
+    slotSubEl.textContent = filled + ' terisi';
   }
   // ===== TIMER (hitung mundur) =====
   const timerDisplay = document.getElementById('timerDisplay');
