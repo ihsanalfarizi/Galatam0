@@ -11,10 +11,9 @@
 <style>
 :root{--grid:#D9C2F5; --ink:#000; --muted:#4A4A4A;
   --sheet-bg:#F6EEFF; --cell-bg:#FFFFFF;
-  --stripe:#EBDDFF;          
-  --head-bg:#9C6BF0;         
-  --server-bg:#CE93D8;       
-  --green:#7E57C2; --red:#C0392B; --sel-border:#5E35B1; 
+  --stripe:#EBDDFF;
+  --head-bg:#9C6BF0;
+  --green:#7E57C2; --red:#C0392B; --sel-border:#5E35B1;
   --fs:16px;
   color-scheme:light;}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
@@ -37,13 +36,6 @@ tbody tr:nth-child(even) td{background:var(--stripe);}
 td.rank{text-align:center;font-weight:800;font-size:1.1em;}
 td.center{text-align:center;padding-left:2px;padding-right:2px;}
 td.poin-cell{text-align:center;padding:2px 1px;}
-tbody tr.server td{background:var(--server-bg);font-weight:800;}
-tbody tr.server td.rank,tbody tr.server input.team-name,tbody tr.server input.team-nick{font-weight:800;color:#2A0A4A;}
-tbody tr.server.server.server.server td{background:#D1B3FF;color:#000;}
-tbody tr.server.server.server.server td.rank,tbody tr.server.server input.team-name,tbody tr.server.server input.team-nick{color:#000;font-weight:800;}
-tbody tr.server.server input.team-name::placeholder,tbody tr.server.server input.team-nick::placeholder{color:#000;}
-tbody tr.server.server.server.server.search-hit td{background:#FFF176;}
-tbody tr.server.server.search-hit input.team-name,tbody tr.server.server.search-hit input.team-nick,tbody tr.server.server.search-hit td.rank{color:var(--ink);}
 tbody tr.zero:not(.blank) td.name-cell,tbody tr.zero:not(.blank) td.poin-cell{background:#E4D4FF;}
 tbody tr.pos td.name-cell,tbody tr.pos td.poin-cell{background:#B794F6;}
 tbody tr.rank-1 td.name-cell,tbody tr.rank-1 td.poin-cell{background:#FFC400;}
@@ -191,7 +183,6 @@ tbody tr.red input.team-name::placeholder,tbody tr.red input.team-nick::placehol
 tbody tr.red input.team-name:focus,tbody tr.red input.team-nick:focus{background:#fff;color:#000;}
 tbody tr.red.search-hit td,tbody tr.red.search-hit td.name-cell,tbody tr.red.search-hit td.poin-cell{background:#FF8A80;}
 tbody tr.red.search-hit input.team-name,tbody tr.red.search-hit input.team-nick{color:#000;}
-tbody tr.server input.team-name,tbody tr.server input.team-nick,tbody tr.server.server.server input.team-name,tbody tr.server.server.server input.team-nick{color:#000 !important;-webkit-text-fill-color:#000;}
 .points-wrap{gap:1px;max-width:100%;overflow:hidden;}
 input.points{width:1.6em;font-size:1.85em;height:1.2em;margin-right:.15em;}
 .fish-btn{height:1.4em;padding:0 .1em;border-width:1px;}
@@ -268,43 +259,36 @@ body{background:#FFD3E6;}
 body.night{background:#1C0F17;}
 .panel{background:#F6EEFF;border:2px solid #C9B2F2;border-radius:16px;padding-top:12px;}
 body.night .panel{background:var(--cell-bg);border-color:#4A3566;}
-.hero{position:relative;margin:0 0 12px;padding:20px 28px 0;border-radius:20px;background:#FF7FB8;overflow:hidden;border:3px solid #fff;box-shadow:0 8px 22px rgba(214,51,132,.35);}
-.hero::before,.hero::after{position:absolute;top:14px;color:#fff;opacity:.75;font-size:30px;letter-spacing:12px;line-height:1;pointer-events:none;}
-.hero::before{content:"\2726 \2727 \2726";left:26px;}
-.hero::after{content:"\2727 \2726 \2727";right:14px;}
-.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:end;max-width:960px;margin:8px auto 0;}
+
+/* ===== HERO: kiri = sisa slot, tengah = podium (lebar), kanan = waktu ===== */
+.hero{position:relative;margin:0 0 6px;padding:4px 12px 0;border-radius:10px;background:#FF7FB8;overflow:hidden;border:2px solid #fff;box-shadow:0 8px 22px rgba(214,51,132,.35);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px) minmax(0,1fr);gap:10px;align-items:end;}
+body.night .hero{background:#9C2A64;border-color:#3A1A2B;box-shadow:0 8px 22px rgba(0,0,0,.6);}
+.hero-side{align-self:center;display:flex;justify-content:center;padding-bottom:6px;min-width:0;}
+.hero-card{width:100%;max-width:200px;text-align:center;color:#fff;background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.7);border-radius:10px;padding:3px 8px 4px;box-shadow:0 4px 10px rgba(150,20,80,.25);text-shadow:0 2px 0 rgba(170,20,90,.6);}
+.hero-label{font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2;}
+.hero-big{font-weight:800;font-size:24px;line-height:1.05;color:#FFF59D;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.hero-big small{font-size:.42em;color:#fff;font-weight:700;}
+.hero-sub{font-weight:600;font-size:10px;line-height:1.25;}
+.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-items:end;width:100%;margin:0 auto;}
 .pod{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;}
-.pod-medal{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:34px;color:#222;border:4px solid #fff;box-shadow:0 5px 12px rgba(0,0,0,.28);}
-.pod-medal.m1{width:88px;height:88px;font-size:46px;background:linear-gradient(#FFE27A,#F5B700);}
+.pod-medal{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#222;border:3px solid #fff;box-shadow:0 3px 7px rgba(0,0,0,.25);}
+.pod-medal.m1{width:28px;height:28px;font-size:15px;background:linear-gradient(#FFE27A,#F5B700);}
 .pod-medal.m2{background:linear-gradient(#F4F6F8,#AEB8C2);}
 .pod-medal.m3{background:linear-gradient(#F0B27A,#B8691F);color:#fff;}
-.crown{font-size:46px;line-height:1;margin-bottom:-4px;animation:crownFloat 1.8s ease-in-out infinite;filter:drop-shadow(0 3px 3px rgba(0,0,0,.3));}
-@keyframes crownFloat{50%{transform:translateY(-7px) rotate(-5deg);}}
-.pod-name{max-width:100%;margin-top:10px;font-weight:800;font-size:28px;color:#fff;text-shadow:0 2px 0 rgba(170,20,90,.7);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.p1 .pod-name{font-size:36px;}
-.pod-pts{font-weight:700;font-size:20px;color:#fff;}
-.pod-pts b{font-size:1.7em;font-weight:800;color:#FFF59D;text-shadow:0 2px 0 rgba(170,20,90,.6);}
-.pod-step{width:100%;margin-top:10px;border-radius:14px 14px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;font-weight:800;font-size:54px;line-height:1.1;box-shadow:inset 0 5px 0 rgba(255,255,255,.4);}
-.p1 .pod-step{height:150px;background:#FFC400;color:#8A5A00;}
-.p2 .pod-step{height:112px;background:#B8C4CC;color:#4A5760;}
-.p3 .pod-step{height:82px;background:#E58E3A;color:#6A3A0A;}
+.crown{font-size:14px;line-height:1;margin-bottom:-3px;animation:crownFloat 1.8s ease-in-out infinite;filter:drop-shadow(0 3px 3px rgba(0,0,0,.3));}
+@keyframes crownFloat{50%{transform:translateY(-5px) rotate(-5deg);}}
+.pod-name{max-width:100%;margin-top:2px;font-weight:800;font-size:11px;color:#fff;text-shadow:0 2px 0 rgba(170,20,90,.7);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.p1 .pod-name{font-size:13px;}
+.pod-pts{font-weight:700;font-size:9px;color:#fff;}
+.pod-pts b{font-size:1.5em;font-weight:800;color:#FFF59D;text-shadow:0 2px 0 rgba(170,20,90,.6);}
+.pod-step{width:100%;margin-top:2px;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:1px;font-weight:800;font-size:13px;line-height:1.1;box-shadow:inset 0 3px 0 rgba(255,255,255,.4);}
+.p1 .pod-step{height:28px;background:#FFC400;color:#8A5A00;}
+.p2 .pod-step{height:20px;background:#B8C4CC;color:#4A5760;}
+.p3 .pod-step{height:14px;background:#E58E3A;color:#6A3A0A;}
 .pod.empty .pod-medal,.pod.empty .pod-name,.pod.empty .pod-pts{opacity:.55;}
 .pod.empty .crown{opacity:.4;animation:none;}
-body.night .hero{background:#9C2A64;border-color:#3A1A2B;box-shadow:0 8px 22px rgba(0,0,0,.6);}
-.hero{padding:10px 20px 0;margin-bottom:8px;border-radius:14px;border-width:2px;}
-.hero::before,.hero::after{top:8px;font-size:18px;letter-spacing:8px;}
-.podium{max-width:560px;gap:10px;margin-top:4px;}
-.pod-medal{width:40px;height:40px;font-size:21px;border-width:3px;box-shadow:0 3px 7px rgba(0,0,0,.25);}
-.pod-medal.m1{width:52px;height:52px;font-size:27px;}
-.crown{font-size:26px;margin-bottom:-2px;}
-.pod-name{margin-top:5px;font-size:17px;}
-.p1 .pod-name{font-size:21px;}
-.pod-pts{font-size:13px;}
-.pod-pts b{font-size:1.5em;}
-.pod-step{margin-top:5px;font-size:28px;padding-top:3px;border-radius:10px 10px 0 0;box-shadow:inset 0 3px 0 rgba(255,255,255,.4);}
-.p1 .pod-step{height:62px;}
-.p2 .pod-step{height:46px;}
-.p3 .pod-step{height:34px;}
+
 html,body{height:100%;}
 body{min-height:0;padding:6px 10px;overflow:hidden;}
 .panel{padding:8px 10px 6px;}
@@ -320,40 +304,29 @@ td.poin-cell{padding:1px;}
 tbody td{border-width:1.5px;}
 th.colhead{border-width:1.5px;}
 .panel .copyright{font-size:calc(var(--fs)*1.1);margin-top:3px;padding-top:0;}
-.hero{padding:6px 16px 0;margin-bottom:6px;}
-.hero::before,.hero::after{top:6px;font-size:14px;letter-spacing:6px;}
-.podium{max-width:420px;gap:8px;margin-top:0;}
-.pod-medal{width:30px;height:30px;font-size:16px;border-width:2px;}
-.pod-medal.m1{width:40px;height:40px;font-size:21px;}
-.crown{font-size:20px;margin-bottom:-2px;}
-.pod-name{margin-top:3px;font-size:13px;}
-.p1 .pod-name{font-size:16px;}
-.pod-pts{font-size:10px;}
-.pod-pts b{font-size:1.4em;}
-.pod-step{margin-top:3px;font-size:20px;padding-top:2px;border-radius:8px 8px 0 0;}
-.p1 .pod-step{height:44px;}
-.p2 .pod-step{height:32px;}
-.p3 .pod-step{height:24px;}
-.hero{padding:4px 12px 0;margin-bottom:4px;border-radius:10px;}
-.hero::before,.hero::after{top:4px;font-size:10px;letter-spacing:4px;}
-.podium{max-width:300px;gap:6px;}
-.pod-medal{width:22px;height:22px;font-size:12px;border-width:2px;box-shadow:0 2px 4px rgba(0,0,0,.25);}
-.pod-medal.m1{width:28px;height:28px;font-size:15px;}
-.crown{font-size:14px;margin-bottom:-1px;}
-.pod-name{margin-top:2px;font-size:10px;}
-.p1 .pod-name{font-size:12px;}
-.pod-pts{font-size:8px;}
-.pod-pts b{font-size:1.4em;}
-.pod-step{margin-top:2px;font-size:14px;padding-top:1px;border-radius:6px 6px 0 0;box-shadow:inset 0 2px 0 rgba(255,255,255,.4);}
-.p1 .pod-step{height:30px;}
-.p2 .pod-step{height:22px;}
-.p3 .pod-step{height:16px;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hero">
+    <!-- KIRI: sisa slot -->
+    <div class="hero-side">
+      <div class="hero-card">
+        <div class="hero-label">Sisa Slot</div>
+        <div class="hero-big"><span id="slotLeft">30</span> <small id="slotTotal">/ 30</small></div>
+        <div class="hero-sub" id="slotSub">slot masih kosong</div>
+      </div>
+    </div>
+    <!-- TENGAH: podium -->
     <div class="podium" id="podium"></div>
+    <!-- KANAN: waktu -->
+    <div class="hero-side">
+      <div class="hero-card">
+        <div class="hero-label">Waktu</div>
+        <div class="hero-big" id="clockTime">00:00:00</div>
+        <div class="hero-sub" id="clockDate"></div>
+      </div>
+    </div>
   </div>
   <div class="panel">
     <div class="top-row">
@@ -426,14 +399,13 @@ th.colhead{border-width:1.5px;}
 </div>
 
 <script>
-  // 30 peserta: No 1-29 kosong (isi Nama Display sendiri), No 30 = Admin
+  // 30 peserta: semua kosong (isi Nama Display sendiri), tidak ada baris Admin
   const TOTAL_PESERTA = 30;
-  const ADMIN_ID = 30;
   const ROWS_PER_TABLE = 15;
   const teams = [];
   for(let i = 1; i <= TOTAL_PESERTA; i++){
     // red = true -> baris diwarnai merah (hanya warna, tidak mengubah poin/peringkat)
-    teams.push({ id:i, nickname: i === ADMIN_ID ? 'Admin' : '', points:0, joined: i === ADMIN_ID, red:false, history:[], flash:null });
+    teams.push({ id:i, nickname:'', points:0, joined:false, red:false, history:[], flash:null });
   }
 
   // Gambar ikan (SVG tertanam, tidak perlu file luar). Untuk pakai gambar sendiri,
@@ -459,12 +431,10 @@ th.colhead{border-width:1.5px;}
   const searchClear = document.getElementById('searchClear');
 
   // ===== NOTIFIKASI + SUARA saat poin berubah =====
-  // Dipanggil setiap poin naik / turun (ikan, tombol ±, bonus BIN).
-  // Menampilkan kartu mengambang: nama, perubahan (+3 / -2), dan poin jadi berapa. Suara naik = nada naik, turun = nada turun.
   const ptToasts = document.getElementById('ptToasts');
   const soundBtn = document.getElementById('soundToggle');
-  const MAX_TOASTS = 4;        // maksimal kartu tampil bersamaan
-  const TOAST_MS = 4500;       // lama tampil (ms)
+  const MAX_TOASTS = 4;
+  const TOAST_MS = 4500;
   let soundOn = true;
   try { soundOn = localStorage.getItem('galatamaSound') !== 'off'; } catch(e) {}
   let ptCtx = null;
@@ -478,7 +448,7 @@ th.colhead{border-width:1.5px;}
     soundOn = !soundOn;
     try { localStorage.setItem('galatamaSound', soundOn ? 'on' : 'off'); } catch(e) {}
     refreshSoundBtn();
-    if(soundOn) ptSound(true);   // contoh bunyi saat dinyalakan
+    if(soundOn) ptSound(true);
   });
 
   // Rangkaian nada: [frekuensi, mulai(detik), durasi(detik)]
@@ -531,8 +501,31 @@ th.colhead{border-width:1.5px;}
     ptSound(up, Math.abs(delta) >= 3);
   }
 
-  // Lama kedip warna saat poin berubah (ms) - samakan dengan durasi animasi di CSS
   const FLASH_MS = 2400;
+
+  // ===== SISA SLOT (kiri) & WAKTU (kanan) =====
+  const slotLeftEl = document.getElementById('slotLeft');
+  const slotTotalEl = document.getElementById('slotTotal');
+  const slotSubEl = document.getElementById('slotSub');
+  function renderSlots(){
+    const filled = teams.filter(t => (t.nickname || '').trim() !== '').length;
+    const left = TOTAL_PESERTA - filled;
+    slotLeftEl.textContent = left;
+    slotTotalEl.textContent = '/ ' + TOTAL_PESERTA;
+    slotSubEl.textContent = left === 0 ? 'semua slot terisi' : (filled + ' terisi, ' + left + ' masih kosong');
+  }
+  const clockTimeEl = document.getElementById('clockTime');
+  const clockDateEl = document.getElementById('clockDate');
+  function tickClock(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    clockTimeEl.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    try {
+      clockDateEl.textContent = d.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'short', year:'numeric' });
+    } catch(e) { clockDateEl.textContent = d.toDateString(); }
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
 
   let searchIdx = 0;
   function markCur(scroll){
@@ -580,14 +573,12 @@ th.colhead{border-width:1.5px;}
   searchInput.addEventListener('keydown', (e) => {
     if(e.key === 'Enter'){
       e.preventDefault();
-      // Enter = langsung buka popup "Tarik Ikan" untuk peserta pertama yang ditemukan
       const hit = document.querySelector('tr.search-cur') || document.querySelector('tr.search-hit');
       if(hit) openFish(Number(hit.dataset.id));
     } else if(e.key === 'Escape'){
       closeSearch();
     }
   });
-  // Kalau kolom search kosong lalu kehilangan fokus, sembunyikan lagi
   searchInput.addEventListener('blur', () => {
     setTimeout(() => {
       if(searchInput.value.trim() === '' && document.activeElement !== searchInput && !fishModal.classList.contains('open')){
@@ -597,9 +588,7 @@ th.colhead{border-width:1.5px;}
   });
   searchClear.addEventListener('mousedown', (e) => e.preventDefault());
   searchClear.addEventListener('click', () => closeSearch());
-  // Tombol kecil = cadangan kalau Ctrl+F ditangkap browser (mis. fokus belum di halaman)
   document.getElementById('searchFab').addEventListener('click', openSearch);
-  // Pastikan halaman memegang fokus keyboard supaya Ctrl+F sampai ke halaman, bukan ke browser
   window.focus();
   document.addEventListener('pointerdown', () => window.focus(), { once:true });
   ['searchPrev','searchNext'].forEach(id => {
@@ -608,7 +597,7 @@ th.colhead{border-width:1.5px;}
     b.addEventListener('click', () => stepSearch(id === 'searchNext' ? 1 : -1));
   });
 
-  // Pintasan Ctrl+F (atau Cmd+F di Mac): munculkan kolom search lalu langsung fokus
+  // Pintasan Ctrl+F (atau Cmd+F di Mac)
   document.addEventListener('keydown', (e) => {
     if((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === 'f'){
       e.preventDefault();
@@ -652,11 +641,10 @@ th.colhead{border-width:1.5px;}
     const delta = picked.reduce((a,f) => a + f.p, 0);
     const label = picked.map(f => f.n).join(' + ');
     t.points += delta;
-    t.flash = { dir: 'up', time: Date.now() };   // kedip hijau (poin naik)
+    t.flash = { dir: 'up', time: Date.now() };
     t.history.push({ delta, after: t.points, time: Date.now(), label });
-    notifyPoints(t, delta, t.points, label);     // notifikasi + suara
+    notifyPoints(t, delta, t.points, label);
     closeFish();
-    // Kosongkan search supaya siap untuk pencarian berikutnya (kolom search tetap terbuka)
     searchInput.value = '';
     render();
     searchInput.focus();
@@ -670,7 +658,6 @@ th.colhead{border-width:1.5px;}
     const t = teams.find(x => x.id === id);
     document.getElementById('pmSub').textContent = t.nickname || ('Peserta #' + id);
     pmModal.classList.add('open');
-    // Tempatkan popup tepat di bawah tombol ± (naik ke atas kalau tidak muat), tetap di dalam layar
     const box = pmModal.querySelector('.modal-box');
     const r = btn.getBoundingClientRect();
     const w = box.offsetWidth, h = box.offsetHeight, gap = 4;
@@ -690,9 +677,9 @@ th.colhead{border-width:1.5px;}
     const actual = newPoints - t.points;
     t.points = newPoints;
     if(actual){
-      t.flash = { dir: actual > 0 ? 'up' : 'down', time: Date.now() };   // hijau = naik, biru = turun
+      t.flash = { dir: actual > 0 ? 'up' : 'down', time: Date.now() };
       t.history.push({ delta: actual, after: newPoints, time: Date.now(), label: 'Manual' });
-      notifyPoints(t, actual, newPoints, 'Manual');                       // notifikasi + suara
+      notifyPoints(t, actual, newPoints, 'Manual');
     }
     render();
   }
@@ -720,7 +707,6 @@ th.colhead{border-width:1.5px;}
     return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
   }
 
-  // Penanda poin: zero (0) = MERAH, pos (>0) = HIJAU (warnanya diatur di CSS)
   function applyScoreColor(tr, td, points){
     const tm = teams.find(x => x.id === Number(tr.dataset.id));
     tr.classList.toggle('blank', !tm || (tm.nickname || '').trim() === '');
@@ -730,14 +716,11 @@ th.colhead{border-width:1.5px;}
 
   // Poin sama di peringkat 1-10: tiap kelompok poin yang sama dapat 1 warna yang sama
   let tieColor = {};
-  let compRank = {};   // peringkat kompetisi: poin sama = peringkat sama (untuk medali)
+  let compRank = {};
   const TIE_COLORS = 5;
   const TIE_RANK_LIMIT = 10;
   function computeTies(sorted){
     compRank = {};
-    // Fase poin awal / BIN: selama semua poin yang ada HANYA berasal dari bonus BIN,
-    // nomor juara & warna berurutan 1, 2, 3, ... (tidak boleh 1 semua).
-    // Begitu ada poin dari luar BIN (ikan / manual), poin sama baru boleh berperingkat sama.
     const binPhase = sorted.every(t => t.points === 0);
     if(binPhase){
       sorted.forEach((t, i) => { compRank[t.id] = i + 1; });
@@ -748,8 +731,6 @@ th.colhead{border-width:1.5px;}
       compRank[t.id] = 1 + sorted.filter(o => o.points > t.points).length;
     });
     const count = {};
-    // Hanya poin sama yang memperebutkan juara 1, 2, atau 3 (peringkat kompetisi <= 3) yang diberi warna kelompok.
-    // Poin sama di peringkat 4 ke bawah tidak diwarnai khusus (tetap hijau biasa).
     sorted.slice(0, TIE_RANK_LIMIT).forEach(t => { if(t.points > 0 && compRank[t.id] <= 3) count[t.points] = (count[t.points] || 0) + 1; });
     tieColor = {};
     let idx = 0;
@@ -760,11 +741,6 @@ th.colhead{border-width:1.5px;}
     });
   }
 
-  // Warna peringkat:
-  //  - baris bertanda merah (klik NO) -> merah solid (diatur CSS .red)
-  //  - poin sama di peringkat 1-10  -> warna kelompok (sama untuk yang poinnya sama)
-  //  - juara 1-3 (poin > 0, tidak seri) -> emas, perak, perunggu
-  //  - lainnya -> hijau (poin > 0) / merah (poin 0) lewat applyScoreColor
   function applyRankColor(tr, rank, points){
     tr.classList.remove('rank-1','rank-2','rank-3','tie-0','tie-1','tie-2','tie-3','tie-4');
     if(points > 0 && rank <= TIE_RANK_LIMIT && tieColor[points] !== undefined){
@@ -788,7 +764,7 @@ th.colhead{border-width:1.5px;}
         const cls = h.delta > 0 ? 'pos' : 'neg';
         return '<li class="hist-item"><span class="hist-delta ' + cls + '">' + sign + h.delta + '</span>'
           + '<span class="hist-meta"><span class="hist-after">poin jadi ' + h.after + '</span>'
-          + (h.label ? '<span class="hist-fish">' + h.label + '</span>' : '')
+          + (h.label ? '<span class="hist-fish">' + esc(h.label) + '</span>' : '')
           + '<span class="hist-time">' + formatTime(h.time) + '</span></span></li>';
       }).join('');
       histModalBody.innerHTML = '<ul class="hist-list">' + items + '</ul>';
@@ -802,15 +778,11 @@ th.colhead{border-width:1.5px;}
   function buildRow(team, rank){
     const tr = document.createElement('tr');
     tr.dataset.id = team.id;
-    if(team.id === ADMIN_ID) tr.classList.add('server');   // baris server = hijau solid
-    if(team.red) tr.classList.add('red');                  // baris bertanda merah
+    if(team.red) tr.classList.add('red');
 
     const tdRank = document.createElement('td');
     tdRank.className = 'rank';
-    // Juara 1-3 (poin > 0): nomor diganti medali emas, perak, perunggu
     const MEDALS = { 1:true, 2:true, 3:true };
-    // Kalau poin sama (perebutan juara 1-3), semua yang seri dapat medali yang sama,
-    // termasuk yang urutannya sudah di bawah nomor 3.
     const medalRank = compRank[team.id] || rank;
     if(team.points > 0 && MEDALS[medalRank]){
       const m = document.createElement('span');
@@ -822,16 +794,13 @@ th.colhead{border-width:1.5px;}
     }
 
     // TOMBOL MERAH: klik kolom NO untuk mewarnai baris merah, klik lagi untuk membatalkan
-    // (hanya warna; poin, urutan, dan medali tidak berubah). Baris No 30 (Admin) tidak bisa.
-    if(team.id !== ADMIN_ID){
-      tdRank.classList.add('red-toggle');
-      tdRank.title = 'Klik untuk tandai MERAH / batalkan';
-      tdRank.addEventListener('click', () => {
-        const t = teams.find(x => x.id === team.id);
-        t.red = !t.red;
-        tr.classList.toggle('red', t.red);
-      });
-    }
+    tdRank.classList.add('red-toggle');
+    tdRank.title = 'Klik untuk tandai MERAH / batalkan';
+    tdRank.addEventListener('click', () => {
+      const t = teams.find(x => x.id === team.id);
+      t.red = !t.red;
+      tr.classList.toggle('red', t.red);
+    });
 
     const tdNick = document.createElement('td');
     tdNick.className = 'name-cell';
@@ -845,6 +814,7 @@ th.colhead{border-width:1.5px;}
     nickInput.addEventListener('input', (e) => {
       teams.find(x => x.id === team.id).nickname = e.target.value;
       renderPodium(getSorted());
+      renderSlots();
       applySearch();
     });
     tdNick.appendChild(nickInput);
@@ -865,7 +835,6 @@ th.colhead{border-width:1.5px;}
     pointsInput.dataset.id = team.id;
     pointsInput.dataset.field = 'points';
 
-    // Tombol ± = buka popup +1..+10 / -1..-10
     const pmBtn = document.createElement('button');
     pmBtn.type = 'button';
     pmBtn.className = 'pm-btn';
@@ -923,7 +892,6 @@ th.colhead{border-width:1.5px;}
     histBtn.addEventListener('click', () => openHistory(team.id));
     tdHist.appendChild(histBtn);
 
-    // Kedip hijau (poin naik) / biru (poin turun); lanjut dari sisa waktu kalau baris dibangun ulang
     if(team.flash && Date.now() - team.flash.time < FLASH_MS){
       const el = Date.now() - team.flash.time;
       tr.classList.add(team.flash.dir === 'up' ? 'flash-up' : 'flash-down');
@@ -938,7 +906,7 @@ th.colhead{border-width:1.5px;}
   function renderPodium(sorted){
     const el = document.getElementById('podium');
     if(!el) return;
-    const top = sorted.filter(t => t.id !== ADMIN_ID).slice(0, 3);
+    const top = sorted.slice(0, 3);
     el.innerHTML = [1, 0, 2].map(i => {
       const t = top[i], rank = i + 1;
       const has = !!t && t.points > 0;
@@ -958,6 +926,7 @@ th.colhead{border-width:1.5px;}
     const sorted = getSorted();
     computeTies(sorted);
     renderPodium(sorted);
+    renderSlots();
     sorted.forEach((team, idx) => {
       const rank = idx + 1;
       (rank <= ROWS_PER_TABLE ? tbodyTop : tbodyBottom).appendChild(buildRow(team, rank));
@@ -978,7 +947,7 @@ th.colhead{border-width:1.5px;}
   try { savedMode = localStorage.getItem('galatamaMode') === 'night' ? 'night' : 'day'; } catch(e) {}
   setMode(savedMode);
 
-  // Skala otomatis: tampilan didesain 1400px lalu diperkecil/diperbesar agar pas selebar layar (tanpa scroll)
+  // Skala otomatis: didesain 1400px lalu diskalakan agar pas 1 layar tanpa scroll
   const wrapEl = document.querySelector('.wrap');
   const DESIGN_W = 1400;
   function fitToScreen(){
@@ -989,7 +958,6 @@ th.colhead{border-width:1.5px;}
     wrapEl.style.marginLeft = '';
     wrapEl.style.marginBottom = '';
     const natH = wrapEl.offsetHeight || 1;
-    // skala = yang terkecil antara lebar & tinggi layar, supaya SEMUA muat 1 layar tanpa scroll
     const scale = Math.max(0.2, Math.min(availW / DESIGN_W, availH / natH, 1.6));
     if('zoom' in document.body.style){
       wrapEl.style.zoom = scale;
